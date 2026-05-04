@@ -15,12 +15,16 @@ int main()
 
     sf::CircleShape shape(circle_radius);
 
-    float circle_x = shape.getPosition().x;
-    float circle_y = shape.getPosition().y;
+    
     float offset_x = (width / 2);
     float offset_y = (height / 2);
+
+    
+
     shape.setFillColor(sf::Color::Red);
     sf::Clock clock;
+
+    window.setFramerateLimit(60);
 
     while (window.isOpen())
     {
@@ -28,8 +32,16 @@ int main()
         {
             if (event->is<sf::Event::Closed>())
                 window.close();
+
             ImGui::SFML::ProcessEvent(window, *event);
         }
+
+        float circle_x = shape.getPosition().x;
+        float circle_y = shape.getPosition().y;
+
+        float xspeed = 1;
+        float yspeed = .5f;
+
         ImGui::SFML::Update(window, clock.restart());
         ImGui::Begin("Game Engine");
         ImGui::Checkbox("Circle", &circle_exists);
@@ -38,11 +50,13 @@ int main()
         ImGui::SliderFloat("Y axis", &circle_y, -offset_y, offset_y);
         ImGui::End();
 
+        shape.setPosition({ circle_x + xspeed, circle_y + yspeed});
+
+
         window.clear();
         if (circle_exists)
             window.draw(shape);
             shape.setRadius(circle_radius);
-            shape.setOrigin({ -circle_x, circle_y });
 
         ImGui::SFML::Render(window);
         window.display();
