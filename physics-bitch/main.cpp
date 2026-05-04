@@ -36,15 +36,15 @@ int main()
         ImGui::SliderFloat("Radius", &circle_radius, 50.f, 300.f);
         ImGui::SliderFloat("X axis", &circle_x, -offset_x, offset_x);
         ImGui::SliderFloat("Y axis", &circle_y, -offset_y, offset_y);
-
         ImGui::End();
+
         window.clear();
         if (circle_exists)
             window.draw(shape);
             shape.setRadius(circle_radius);
             shape.setOrigin({ -circle_x, circle_y });
+
         ImGui::SFML::Render(window);
-        window.draw(map);
         window.display();
 
     }
