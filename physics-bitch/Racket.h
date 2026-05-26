@@ -11,7 +11,7 @@ public:
 
 private:
 	sf::RectangleShape shape;
-	const float y_velocity = 25.0f;
+	const float y_velocity = 100.0f;
 	float y = 0;
 	float width = 10.0f;
 

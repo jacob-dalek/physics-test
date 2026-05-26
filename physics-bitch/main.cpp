@@ -17,9 +17,6 @@ int main()
 
     window.setFramerateLimit(60);
     Ball ball{ 400.0f, 352.0f, 100.0f };
-    Ball ball2{ 500.0f, 100.0f, 200.0f };
-
-
 
     sf::Clock clock;
 	float delta_time = 0.0f;
@@ -35,8 +32,6 @@ int main()
 
         }
         ball.game_over(window);
-
-
 
         window.clear();
 

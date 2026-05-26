@@ -27,7 +27,6 @@ void Ball::update(float delta_time) {
 	x += x_speed;
 	y += y_speed;
 
-
 	if (x <= 0 || x >= 800 - body.getRadius())
 		x_speed *= -1;
 	if (y <= 0 || y >= 800 - body.getRadius())
