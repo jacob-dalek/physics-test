@@ -3,26 +3,23 @@
 #include <SFML/Graphics.hpp>
 #include <iostream> 
 #include "Ball.h"
+#include "Racket.h"
 
 constexpr int width{ 800 };
 constexpr int height{ 800 };
 
 int main()
 {
-    sf::Texture texture("resources/vertex-array-tilemap-tileset.png");
-    sf::RectangleShape square{ {80.f, 80.f} };
-    sf::Sprite sprite1(texture);
 
+    Racket racket{ 100.0f, 10.0f };
     sf::RenderWindow window(sf::VideoMode({ width, height }), "SFML works!");
     ImGui::SFML::Init(window);
 
-
-
-
     window.setFramerateLimit(60);
-    Ball ball{ 400.0f, 400.0f, 100.0f };
+    Ball ball{ 400.0f, 352.0f, 100.0f };
+    Ball ball2{ 500.0f, 100.0f, 200.0f };
 
-    sf::Color green = sf::Color::Green;
+
 
     sf::Clock clock;
 	float delta_time = 0.0f;
@@ -34,14 +31,21 @@ int main()
             if (event->is<sf::Event::Closed>())
                 window.close();
 
+            racket.update(delta_time);
+
         }
+        ball.game_over(window);
+
 
 
         window.clear();
 
-        ball.render(window, green);
+        ball.render(window);
         ball.update(delta_time);
-
+        
+        racket.render(window);
+        
+        racket.detect_colision(&ball);
 
         window.display();
 

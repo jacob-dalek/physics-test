@@ -6,14 +6,16 @@ public:
 	Ball(float x, float y, float radius);
 
 	void update(float delta_time);
-	void render(sf::RenderWindow &window, sf::Color &color);
+	void set_y(float y);
+	void set_x(float x);
+	void render(sf::RenderWindow& window);
+	void game_over(sf::RenderWindow& window);
+	sf::CircleShape body;
 
 private:
-	sf::CircleShape body;
 	float x;
 	float y;
 	float radius;
-
 	float x_speed;
 	float y_speed;
 
